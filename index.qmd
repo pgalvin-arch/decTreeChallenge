@@ -12,7 +12,7 @@ execute:
 
  **How does encoding categorical variables as numbers affect our understanding of feature importance?**
 
-For detailed analysis and conclusions, see the [Discussion Section]{@sec-Discussion}
+For detailed analysis and conclusions, see @sec-Discussion
 
 ## The Ames Housing Dataset 🏠
 
@@ -201,7 +201,7 @@ ggplot(importance_cat, aes(x = reorder(Feature, Importance), y = Importance)) +
 
 1. **Numerical vs Categorical Encoding:** 
 
-I know that there is no difference higher zip codes vs lower zip codes which means that modeling numerically does not make much sense because the value of the numbers within a zip codes does not tell us anything. But, modeling categorically allows us to treat each zip code as its own category which helps with analysis.
+ There is no difference higher zip codes vs lower zip codes which means that modeling numerically does not make much sense because the value of the numbers within a zip codes does not tell us anything. But, modeling categorically allows us to treat each zip code as its own category which helps with analysis.
 
 2. **R vs Python Implementation Differences:** 
 
