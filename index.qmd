@@ -12,7 +12,7 @@ execute:
 
  **How does encoding categorical variables as numbers affect our understanding of feature importance?**
 
-For detailed analysis and conclusions, see the [Discussion Section]{#sec-Discussion} .
+For detailed analysis and conclusions, see the [Discussion Section]{@sec-Discussion}
 
 ## The Ames Housing Dataset 🏠
 
