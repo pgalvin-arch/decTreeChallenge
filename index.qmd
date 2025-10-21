@@ -27,8 +27,6 @@ We are analyzing the Ames Housing dataset which contains detailed information ab
 
 ## Data Loading and Model Building
 
-### R
-
 ```{r}
 #| label: load-and-model-r
 #| echo: false
@@ -72,10 +70,6 @@ cat("Model built with", sum(tree_model$frame$var == "<leaf>"), "terminal nodes\n
 
 ## Tree Visualization
 
-::: {.panel-tabset}
-
-### R
-
 ```{r}
 #| label: visualize-tree-r
 #| echo: false
@@ -101,8 +95,6 @@ if (require(rpart.plot, quietly = TRUE)) {
 
 
 ## Feature Importance Analysis
-
-### R
 
 ```{r}
 #| label: feature-importance-r
@@ -143,8 +135,6 @@ ggplot(importance_df, aes(x = reorder(Feature, Importance), y = Importance)) +
 
 
 ## Critical Analysis: The Encoding Problem
-
-::: {.callout-warning}
 ## ⚠️ The Problem Revealed
 
 **What to note:** Our decision tree treated `zipCode` as a numerical variable.  This leads to zip code being unimportant.  Not surprisingly, because there is no reason to believe allowing splits like "zipCode < 50012.5" should be beneficial for house price prediction. This false coding of a variable creates several problems:
@@ -154,17 +144,8 @@ ggplot(importance_df, aes(x = reorder(Feature, Importance), y = Importance)) +
 3. **Misleading Interpretations:** We might conclude zipCode is not important when our intuition tells us it should be important (listen to your intuition).
 
 **The Real Issue:** Zip codes are categorical variables representing discrete geographic areas. The numerical values have no inherent order or magnitude relationship to house prices.  These must be modelled as categorical variables.
-:::
-
-## Proper Categorical Encoding: The Solution
-
-Now let's repeat the analysis with zipCode properly encoded as categorical variables to see the difference.
-
-**R Approach:** Convert zipCode to a factor (categorical variable)  
 
 ### Categorical Encoding Analysis
-
-### R
 
 ```{r}
 #| label: categorical-r
@@ -209,8 +190,6 @@ if(zipcode_in_tree) {
 
 ### Feature Importance: Categorical zipCode
 
-### R
-
 ```{r}
 #| label: importance-plot-cat-r
 #| echo: false
@@ -228,7 +207,6 @@ ggplot(importance_cat, aes(x = reorder(Feature, Importance), y = Importance)) +
        x = "Features", y = "Importance Score") +
   theme_minimal()
 ```
-
 
 ## Discussion {sec-Discussion}
 
