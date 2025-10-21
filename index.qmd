@@ -164,8 +164,6 @@ Now let's repeat the analysis with zipCode properly encoded as categorical varia
 
 ### Categorical Encoding Analysis
 
-::: {.panel-tabset}
-
 ### R
 
 ```{r}
@@ -209,11 +207,7 @@ if(zipcode_in_tree) {
 ```
 
 
-:::
-
 ### Feature Importance: Categorical zipCode
-
-::: {.panel-tabset}
 
 ### R
 
@@ -235,7 +229,6 @@ ggplot(importance_cat, aes(x = reorder(Feature, Importance), y = Importance)) +
   theme_minimal()
 ```
 
-:::
 
 ## Discussion {sec-Discussion}
 
@@ -248,21 +241,6 @@ I know that there is no difference higher zip codes vs lower zip codes which mea
 R does a better job when modeling a categorical variable because the Python importance chart attempts to show the importance of each zip code in the dataset which does not help us since there are so many. This is because Python creates a dummy variable for each zip code while R uses a factor to make zip codes categorical. This is why each individual zip code shows up on the Python feature importance graph. There is some documentation saying that the langugage Julia can handle categorical variables effectively. Julia documentation states, "CategoricalVector … is designed to additionally provide full support for working with categorical variables, both with unordered (nominal variables) and ordered categories (ordinal variables)" which shows Julia's versatility when it comes to these kinds of variables.
 
 
-3. **Professional Presentation:**
-
-## Discussion Section {#sec-Discussion}
-
-The analysis reveals critical insights about proper variable encoding in machine learning models. When zip codes are treated as numerical variables, decision trees create meaningless splits that don't reflect real-world relationships. However, when properly encoded as categorical variables, zip codes become powerful predictors that align with real estate intuition about location importance.
-
-The comparison between R and Python implementations demonstrates that different approaches to categorical encoding can yield significantly different results. R's factor-based approach provides cleaner, more interpretable feature importance rankings, while Python's one-hot encoding approach creates numerous dummy variables that can clutter the analysis.
-
-### Key Findings:
-
-1. **Numerical vs Categorical Encoding**: Zip codes should be modeled as categorical variables because they represent discrete geographic areas without inherent numerical ordering.
-
-2. **R vs Python Implementation**: R's `rpart` package handles categorical variables more elegantly by treating factors as single entities, while Python's `sklearn` requires one-hot encoding that creates multiple dummy variables.
-
-3. **Feature Importance Interpretation**: Proper categorical encoding leads to more meaningful and interpretable feature importance rankings that align with real estate domain knowledge.
 
 
 
