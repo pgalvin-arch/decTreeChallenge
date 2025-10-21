@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<head>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.21">
 
-<meta charset="utf-8" />
-<meta name="generator" content="quarto-1.8.21" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Decision Tree Challenge</title>
@@ -24,16 +22,28 @@ ul.task-list li input[type="checkbox"] {
 }
 </style>
 
-<!-- htmldependencies:E3FAD763 -->
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="index_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="index_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-ea1d7ac60288e0f1efdbc993fd8432ae.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
 
-<body>
+<body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-</div>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -59,20 +69,20 @@ ul.task-list li input[type="checkbox"] {
 <section id="decision-tree-challenge---feature-importance-and-variable-encoding" class="level1">
 <h1>🌳 Decision Tree Challenge - Feature Importance and Variable Encoding</h1>
 <p><strong>How does encoding categorical variables as numbers affect our understanding of feature importance?</strong></p>
-<p>For detailed analysis and conclusions, see the <a href="#sec-Discussion">Discussion Section</a>.</p>
+<p>For detailed analysis and conclusions, see the <a href="#sec-Discussion">Discussion Section</a> {#sec-Discussion} .</p>
 <section id="the-ames-housing-dataset" class="level2">
-<h2>The Ames Housing Dataset 🏠</h2>
+<h2 class="anchored" data-anchor-id="the-ames-housing-dataset">The Ames Housing Dataset 🏠</h2>
 <p>We are analyzing the Ames Housing dataset which contains detailed information about residential properties sold in Ames, Iowa from 2006 to 2010. This dataset is perfect for our analysis because it contains a categorical variable (like zip code) and numerical variables (like square footage, year built, number of bedrooms).</p>
 </section>
 <section id="the-problem-zipcode-as-numerical-vs-categorical" class="level2">
-<h2>The Problem: ZipCode as Numerical vs Categorical</h2>
+<h2 class="anchored" data-anchor-id="the-problem-zipcode-as-numerical-vs-categorical">The Problem: ZipCode as Numerical vs Categorical</h2>
 <p><strong>Key Question:</strong> What happens when we treat zipCode as a numerical variable in a decision tree? How does this affect feature importance interpretation?</p>
-<p><strong>The Issue:</strong> Zip codes (50010, 50011, 50012, 50013) are categorical variables representing discrete geographic areas, i.e. neighborhoods. When treated as numerical, the tree might split on “zipCode &gt; 50012.5” - which has no meaningful interpretation for house prices. Zip codes are non-ordinal categorical variables meaning they have no inherent order that aids house price prediction (i.e. zip code 99999 is not the priceiest zip code).</p>
+<p><strong>The Issue:</strong> Zip codes (50010, 50011, 50012, 50013) are categorical variables representing discrete geographic areas, i.e.&nbsp;neighborhoods. When treated as numerical, the tree might split on “zipCode &gt; 50012.5” - which has no meaningful interpretation for house prices. Zip codes are non-ordinal categorical variables meaning they have no inherent order that aids house price prediction (i.e.&nbsp;zip code 99999 is not the priceiest zip code).</p>
 </section>
 <section id="data-loading-and-model-building" class="level2">
-<h2>Data Loading and Model Building</h2>
+<h2 class="anchored" data-anchor-id="data-loading-and-model-building">Data Loading and Model Building</h2>
 <section id="r" class="level3">
-<h3>R</h3>
+<h3 class="anchored" data-anchor-id="r">R</h3>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>Model built with 7 terminal nodes</code></pre>
@@ -81,40 +91,40 @@ ul.task-list li input[type="checkbox"] {
 </section>
 </section>
 <section id="tree-visualization" class="level2">
-<h2>Tree Visualization</h2>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Categorical Encoding Analysis</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">Feature Importance: Categorical zipCode</a></li></ul>
+<h2 class="anchored" data-anchor-id="tree-visualization">Tree Visualization</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">Categorical Encoding Analysis</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false" href="">Feature Importance: Categorical zipCode</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" role="tab" aria-controls="tabset-3-5" aria-selected="false" href="">Key Findings:</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure>
-<p><img src="index_files/figure-html/visualize-tree-r-1.png" class="img-fluid" width="960" /></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/visualize-tree-r-1.png" class="img-fluid figure-img" width="960"></p>
 </figure>
 </div>
 </div>
 </div>
 <section id="feature-importance-analysis" class="level2">
-<h2>Feature Importance Analysis</h2>
+<h2 class="anchored" data-anchor-id="feature-importance-analysis">Feature Importance Analysis</h2>
 </section>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure>
-<p><img src="index_files/figure-html/importance-plot-r-1.png" class="img-fluid" width="768" /></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/importance-plot-r-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
 </div>
 <section id="critical-analysis-the-encoding-problem" class="level2">
-<h2>Critical Analysis: The Encoding Problem</h2>
+<h2 class="anchored" data-anchor-id="critical-analysis-the-encoding-problem">Critical Analysis: The Encoding Problem</h2>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
-<i class='callout-icon'></i>
+<i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 <span class="screen-reader-only">Warning</span>⚠️ The Problem Revealed
@@ -132,14 +142,14 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 <section id="proper-categorical-encoding-the-solution" class="level2">
-<h2>Proper Categorical Encoding: The Solution</h2>
+<h2 class="anchored" data-anchor-id="proper-categorical-encoding-the-solution">Proper Categorical Encoding: The Solution</h2>
 <p>Now let’s repeat the analysis with zipCode properly encoded as categorical variables to see the difference.</p>
 <p><strong>R Approach:</strong> Convert zipCode to a factor (categorical variable)</p>
 </section>
 </div>
 <div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">R</a></li></ul>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 
@@ -148,15 +158,15 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">R</a></li></ul>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
 <div class="cell-output-display">
 <div>
-<figure>
-<p><img src="index_files/figure-html/importance-plot-cat-r-1.png" class="img-fluid" width="768" /></p>
+<figure class="figure">
+<p><img src="index_files/figure-html/importance-plot-cat-r-1.png" class="img-fluid figure-img" width="768"></p>
 </figure>
 </div>
 </div>
@@ -164,8 +174,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<section id="discussion" class="level2">
-<h2>Discussion</h2>
+<section id="discussion-sec-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion-sec-discussion">Discussion {sec-Discussion}</h2>
 <ol type="1">
 <li><strong>Numerical vs Categorical Encoding:</strong></li>
 </ol>
@@ -178,10 +188,18 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Professional Presentation:</strong></li>
 </ol>
 </section>
-<section id="discussion-section" class="level1">
-<h1>Discussion Section:</h1>
-<p>See <strong>?@sec-Discussion</strong> for a discussion of categorical variables</p>
+<section id="sec-Discussion" class="level2">
+<h2 class="anchored" data-anchor-id="sec-Discussion">Discussion Section</h2>
+<p>The analysis reveals critical insights about proper variable encoding in machine learning models. When zip codes are treated as numerical variables, decision trees create meaningless splits that don’t reflect real-world relationships. However, when properly encoded as categorical variables, zip codes become powerful predictors that align with real estate intuition about location importance.</p>
+<p>The comparison between R and Python implementations demonstrates that different approaches to categorical encoding can yield significantly different results. R’s factor-based approach provides cleaner, more interpretable feature importance rankings, while Python’s one-hot encoding approach creates numerous dummy variables that can clutter the analysis.</p>
 </section>
+</div>
+<div id="tabset-3-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-5-tab">
+<ol type="1">
+<li><p><strong>Numerical vs Categorical Encoding</strong>: Zip codes should be modeled as categorical variables because they represent discrete geographic areas without inherent numerical ordering.</p></li>
+<li><p><strong>R vs Python Implementation</strong>: R’s <code>rpart</code> package handles categorical variables more elegantly by treating factors as single entities, while Python’s <code>sklearn</code> requires one-hot encoding that creates multiple dummy variables.</p></li>
+<li><p><strong>Feature Importance Interpretation</strong>: Proper categorical encoding leads to more meaningful and interpretable feature importance rankings that align with real estate domain knowledge.</p></li>
+</ol>
 </div>
 </div>
 </div>
@@ -190,7 +208,7 @@ ul.task-list li input[type="checkbox"] {
 
 </main>
 <!-- /main column -->
-<script id = "quarto-html-after-body" type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
     const anchorJS = new window.AnchorJS();
@@ -591,6 +609,7 @@ ul.task-list li input[type="checkbox"] {
   </script>
 </div> <!-- /content -->
 
-</body>
 
-</html>
+
+
+</body></html>
