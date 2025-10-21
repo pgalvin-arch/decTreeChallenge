@@ -237,60 +237,19 @@ ggplot(importance_cat, aes(x = reorder(Feature, Importance), y = Importance)) +
 
 ## Discussion 
 
-1. **Numerical vs Categorical Encoding:** There are four models above, two in R and two in Python. For each language, the models differ by how zip code is modelled, either as a numerical variable or as a categorical variable. Given what you know about zip codes and real estate prices, how should zip code be modelled, numerically or categorically?
+1. **Numerical vs Categorical Encoding:** 
 
 I know that there is no difference higher zip codes vs lower zip codes which means that modeling numerically does not make much sense because the value of the numbers within a zip codes does not tell us anything. But, modeling categorically allows us to treat each zip code as its own category which helps with analysis.
 
-2. **R vs Python Implementation Differences:** When modelling zip code as a categorical variable, the output tree and feature importance differs quite significantly between R and Python. Investigate why this is the case. Which language would you say does a better job of modelling zip code as a categorical variable? Why is this the case? Do you see any documentation suggesting the other language does a better job? If so, please provide a quote from the documentation.
+2. **R vs Python Implementation Differences:** 
 
 R does a better job when modeling a categorical variable because the Python importance chart attempts to show the importance of each zip code in the dataset which does not help us since there are so many. This is because Python creates a dummy variable for each zip code while R uses a factor to make zip codes categorical. This is why each individual zip code shows up on the Python feature importance graph. There is some documentation saying that the langugage Julia can handle categorical variables effectively. Julia documentation states, "CategoricalVector … is designed to additionally provide full support for working with categorical variables, both with unordered (nominal variables) and ordered categories (ordinal variables)" which shows Julia's versatility when it comes to these kinds of variables.
 
 
-### Questions to Answer for 95% Grade on Challenge
-
-3. **Professional Presentation:** Your discussion answers should be written in a professional, engaging style that would be appropriate for a business audience. Avoid technical jargon and focus on practical implications.  Use Quarto markdown linking to create a link to the discussion section from the top of the page (see https://quarto.org/docs/authoring/cross-references.html#sections).
+3. **Professional Presentation:**
 
 # Discussion Section: 
 See @sec-Discussion for a discussion of categorical variables
 
-### Questions to Answer for 100% Grade on Challenge
 
-4. **Documentation Integration:** For question 2, include a specific quote from the official documentation of `sklearn.tree.DecisionTreeRegressor` that supports your analysis. 
-
-## Submission Checklist ✅
-
-**Minimum Requirements (Required for Any Points):**
-
-- [ ] Forked starter repository from [https://github.com/flyaflya/decTreeChallenge.git](https://github.com/flyaflya/decTreeChallenge.git)
-- [ ] Cloned repository locally using Cursor (or VS Code)
-- [ ] Added thoughtful narrative answers to both discussion questions
-- [ ] Document rendered to HTML successfully
-- [ ] HTML files uploaded to your forked repository
-- [ ] GitHub Pages enabled and working
-- [ ] Site accessible at `https://[your-username].github.io/decTreeChallenge/`
-
-**75% Grade Requirements:**
-
-- [ ] Clear, well-reasoned answer to question 1 about numerical vs categorical encoding
-
-**85% Grade Requirements:**
-
-- [ ] Thorough analysis of question 2 with investigation of official documentation
-
-**95% Grade Requirements:**
-
-- [ ] Professional presentation style appropriate for business audience with links to the discussion section from the top of the page (see https://quarto.org/docs/authoring/cross-references.html#sections).
-
-**100% Grade Requirements:**
-
-- [ ] Specific quote from official documentation of `sklearn.tree.DecisionTreeRegressor` supporting your analysis
-
-**Report Quality (Critical for Higher Grades):**
-
-- [ ] Clear, engaging narrative that tells a story
-- [ ] Focus on the most interesting findings about decision tree feature importance
-- [ ] Professional writing style (no AI-generated fluff)
-- [ ] Concise analysis that gets to the point
-- [ ] Practical insights that would help a real data scientist
-- [ ] Documentation-based analysis for technical questions
 
