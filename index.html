@@ -66,21 +66,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="decision-tree-challenge---feature-importance-and-variable-encoding" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> 🌳 Decision Tree Challenge - Feature Importance and Variable Encoding</h1>
 <p><strong>How does encoding categorical variables as numbers affect our understanding of feature importance?</strong></p>
 <p>For detailed analysis and conclusions, see the <span id="sec-Discussion">Discussion Section</span> .</p>
-<section id="the-ames-housing-dataset" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="the-ames-housing-dataset"><span class="header-section-number">1.1</span> The Ames Housing Dataset 🏠</h2>
+<section id="the-ames-housing-dataset" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="the-ames-housing-dataset"><span class="header-section-number">1</span> The Ames Housing Dataset 🏠</h2>
 <p>We are analyzing the Ames Housing dataset which contains detailed information about residential properties sold in Ames, Iowa from 2006 to 2010. This dataset is perfect for our analysis because it contains a categorical variable (like zip code) and numerical variables (like square footage, year built, number of bedrooms).</p>
 </section>
-<section id="the-problem-zipcode-as-numerical-vs-categorical" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="the-problem-zipcode-as-numerical-vs-categorical"><span class="header-section-number">1.2</span> The Problem: ZipCode as Numerical vs Categorical</h2>
+<section id="the-problem-zipcode-as-numerical-vs-categorical" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-problem-zipcode-as-numerical-vs-categorical"><span class="header-section-number">2</span> The Problem: ZipCode as Numerical vs Categorical</h2>
 <p><strong>Key Question:</strong> What happens when we treat zipCode as a numerical variable in a decision tree? How does this affect feature importance interpretation?</p>
 <p><strong>The Issue:</strong> Zip codes (50010, 50011, 50012, 50013) are categorical variables representing discrete geographic areas, i.e.&nbsp;neighborhoods. When treated as numerical, the tree might split on “zipCode &gt; 50012.5” - which has no meaningful interpretation for house prices. Zip codes are non-ordinal categorical variables meaning they have no inherent order that aids house price prediction (i.e.&nbsp;zip code 99999 is not the priceiest zip code).</p>
 </section>
-<section id="tree-visualization" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="tree-visualization"><span class="header-section-number">1.3</span> Tree Visualization</h2>
+<section id="tree-visualization" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="tree-visualization"><span class="header-section-number">3</span> Tree Visualization</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -91,8 +89,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="feature-importance-analysis" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="feature-importance-analysis"><span class="header-section-number">1.4</span> Feature Importance Analysis</h2>
+<section id="feature-importance-analysis" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="feature-importance-analysis"><span class="header-section-number">4</span> Feature Importance Analysis</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -103,8 +101,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="the-problem-revealed" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="the-problem-revealed"><span class="header-section-number">1.5</span> ⚠️ The Problem Revealed</h2>
+<section id="the-problem-revealed" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="the-problem-revealed"><span class="header-section-number">5</span> ⚠️ The Problem Revealed</h2>
 <p><strong>What to note:</strong> Our decision tree treated <code>zipCode</code> as a numerical variable. This leads to zip code being unimportant. Not surprisingly, because there is no reason to believe allowing splits like “zipCode &lt; 50012.5” should be beneficial for house price prediction. This false coding of a variable creates several problems:</p>
 <ol type="1">
 <li><strong>Potentially Meaningless Splits:</strong> A zip code of 50013 is not “greater than” 50012 in any meaningful way for house prices</li>
@@ -112,8 +110,8 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Misleading Interpretations:</strong> We might conclude zipCode is not important when our intuition tells us it should be important (listen to your intuition).</li>
 </ol>
 <p><strong>The Real Issue:</strong> Zip codes are categorical variables representing discrete geographic areas. The numerical values have no inherent order or magnitude relationship to house prices. These must be modelled as categorical variables.</p>
-<section id="feature-importance-categorical-zipcode" class="level3" data-number="1.5.1">
-<h3 data-number="1.5.1" class="anchored" data-anchor-id="feature-importance-categorical-zipcode"><span class="header-section-number">1.5.1</span> Feature Importance: Categorical zipCode</h3>
+<section id="feature-importance-categorical-zipcode" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="feature-importance-categorical-zipcode"><span class="header-section-number">5.1</span> Feature Importance: Categorical zipCode</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -125,8 +123,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </section>
 </section>
-<section id="discussion-sec-discussion" class="level2" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="discussion-sec-discussion"><span class="header-section-number">1.6</span> Discussion {sec-Discussion}</h2>
+<section id="sec-Discussion" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="sec-Discussion"><span class="header-section-number">6</span> Discussion</h2>
 <ol type="1">
 <li><strong>Numerical vs Categorical Encoding:</strong></li>
 </ol>
@@ -135,7 +133,6 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>R vs Python Implementation Differences:</strong></li>
 </ol>
 <p>R does a better job when modeling a categorical variable because the Python importance chart attempts to show the importance of each zip code in the dataset which does not help us since there are so many. This is because Python creates a dummy variable for each zip code while R uses a factor to make zip codes categorical. This is why each individual zip code shows up on the Python feature importance graph. There is some documentation saying that the langugage Julia can handle categorical variables effectively. Julia documentation states, “CategoricalVector … is designed to additionally provide full support for working with categorical variables, both with unordered (nominal variables) and ordered categories (ordinal variables)” which shows Julia’s versatility when it comes to these kinds of variables.</p>
-</section>
 </section>
 
 </main>

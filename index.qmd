@@ -10,8 +10,6 @@ execute:
   eval: true
 ---
 
-# 🌳 Decision Tree Challenge - Feature Importance and Variable Encoding
-
  **How does encoding categorical variables as numbers affect our understanding of feature importance?**
 
 For detailed analysis and conclusions, see the [Discussion Section]{#sec-Discussion} .
@@ -199,7 +197,7 @@ ggplot(importance_cat, aes(x = reorder(Feature, Importance), y = Importance)) +
   theme_minimal()
 ```
 
-## Discussion {sec-Discussion}
+## Discussion {#sec-Discussion}
 
 1. **Numerical vs Categorical Encoding:** 
 
