@@ -1,6 +1,5 @@
 ---
 title: "Decision Tree Challenge"
-number-sections: true
 subtitle: "Feature Importance and Categorical Variable Encoding"
 format:
   html: default
