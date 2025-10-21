@@ -65,46 +65,6 @@
 \fi
 \makeatother
 
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{241,243,245}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
-\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
-\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
@@ -237,6 +197,9 @@ Encoding}\label{decision-tree-challenge---feature-importance-and-variable-encodi
 \textbf{How does encoding categorical variables as numbers affect our
 understanding of feature importance?}
 
+For detailed analysis and conclusions, see the Discussion
+Section(\#sec-Discussion).
+
 \subsection{The Ames Housing Dataset 🏠}\label{the-ames-housing-dataset}
 
 We are analyzing the Ames Housing dataset which contains detailed
@@ -265,43 +228,6 @@ Building}\label{data-loading-and-model-building}
 
 \subsubsection{R}\label{r}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Load libraries}
-\FunctionTok{suppressPackageStartupMessages}\NormalTok{(}\FunctionTok{library}\NormalTok{(tidyverse))}
-\FunctionTok{suppressPackageStartupMessages}\NormalTok{(}\FunctionTok{library}\NormalTok{(rpart))}
-\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(rpart.plot, }\AttributeTok{quietly =} \ConstantTok{TRUE}\NormalTok{)) \{}
-  \FunctionTok{install.packages}\NormalTok{(}\StringTok{"rpart.plot"}\NormalTok{, }\AttributeTok{repos =} \StringTok{"https://cran.rstudio.com/"}\NormalTok{)}
-  \FunctionTok{library}\NormalTok{(rpart.plot)}
-\NormalTok{\}}
-
-\CommentTok{\# Load data}
-\NormalTok{sales\_data }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/flyaflya/buad442Fall2025/refs/heads/main/datasets/salesPriceData.csv"}\NormalTok{)}
-
-\CommentTok{\# Prepare model data (treating zipCode as numerical)}
-\NormalTok{model\_data }\OtherTok{\textless{}{-}}\NormalTok{ sales\_data }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{select}\NormalTok{(SalePrice, LotArea, YearBuilt, GrLivArea, FullBath, HalfBath, }
-\NormalTok{         BedroomAbvGr, TotRmsAbvGrd, GarageCars, zipCode) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{na.omit}\NormalTok{()}
-
-\CommentTok{\# Split data}
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
-\NormalTok{train\_indices }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(model\_data), }\FloatTok{0.8} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(model\_data))}
-\NormalTok{train\_data }\OtherTok{\textless{}{-}}\NormalTok{ model\_data[train\_indices, ]}
-\NormalTok{test\_data }\OtherTok{\textless{}{-}}\NormalTok{ model\_data[}\SpecialCharTok{{-}}\NormalTok{train\_indices, ]}
-
-\CommentTok{\# Build decision tree}
-\NormalTok{tree\_model }\OtherTok{\textless{}{-}} \FunctionTok{rpart}\NormalTok{(SalePrice }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }
-                    \AttributeTok{data =}\NormalTok{ train\_data,}
-                    \AttributeTok{method =} \StringTok{"anova"}\NormalTok{,}
-                    \AttributeTok{control =} \FunctionTok{rpart.control}\NormalTok{(}\AttributeTok{maxdepth =} \DecValTok{3}\NormalTok{, }
-                                          \AttributeTok{minsplit =} \DecValTok{20}\NormalTok{, }
-                                          \AttributeTok{minbucket =} \DecValTok{10}\NormalTok{))}
-
-\FunctionTok{cat}\NormalTok{(}\StringTok{"Model built with"}\NormalTok{, }\FunctionTok{sum}\NormalTok{(tree\_model}\SpecialCharTok{$}\NormalTok{frame}\SpecialCharTok{$}\NormalTok{var }\SpecialCharTok{==} \StringTok{"\textless{}leaf\textgreater{}"}\NormalTok{), }\StringTok{"terminal nodes}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 Model built with 7 terminal nodes
 \end{verbatim}
@@ -309,24 +235,6 @@ Model built with 7 terminal nodes
 \subsection{Tree Visualization}\label{tree-visualization}
 
 \subsubsection{R}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Visualize tree}
-\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{require}\NormalTok{(rpart.plot, }\AttributeTok{quietly =} \ConstantTok{TRUE}\NormalTok{)) \{}
-  \FunctionTok{rpart.plot}\NormalTok{(tree\_model, }
-             \AttributeTok{type =} \DecValTok{2}\NormalTok{,}
-             \AttributeTok{extra =} \DecValTok{101}\NormalTok{,}
-             \AttributeTok{fallen.leaves =} \ConstantTok{TRUE}\NormalTok{,}
-             \AttributeTok{digits =} \DecValTok{0}\NormalTok{,}
-             \AttributeTok{cex =} \FloatTok{0.8}\NormalTok{,}
-             \AttributeTok{main =} \StringTok{"Decision Tree (zipCode as Numerical)"}\NormalTok{)}
-\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
-  \FunctionTok{plot}\NormalTok{(tree\_model, }\AttributeTok{uniform =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{main =} \StringTok{"Decision Tree (zipCode as Numerical)"}\NormalTok{)}
-  \FunctionTok{text}\NormalTok{(tree\_model, }\AttributeTok{use.n =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{all =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{cex =} \FloatTok{0.8}\NormalTok{)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
 
 \pandocbounded{\includegraphics[keepaspectratio]{index_files/figure-pdf/visualize-tree-r-1.pdf}}
 
@@ -340,7 +248,7 @@ Analysis}\label{feature-importance-analysis}
 \subsection{Critical Analysis: The Encoding
 Problem}\label{critical-analysis-the-encoding-problem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, opacityback=0, bottomrule=.15mm, colbacktitle=quarto-callout-warning-color!10!white, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{⚠️ The Problem Revealed}, colframe=quarto-callout-warning-color-frame, arc=.35mm, coltitle=black, breakable, colback=white, toptitle=1mm, toprule=.15mm, left=2mm, bottomtitle=1mm, rightrule=.15mm, titlerule=0mm, leftrule=.75mm]
+\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, left=2mm, breakable, colbacktitle=quarto-callout-warning-color!10!white, opacitybacktitle=0.6, coltitle=black, colback=white, colframe=quarto-callout-warning-color-frame, title=\textcolor{quarto-callout-warning-color}{\faExclamationTriangle}\hspace{0.5em}{⚠️ The Problem Revealed}, rightrule=.15mm, toptitle=1mm, titlerule=0mm, opacityback=0, bottomtitle=1mm, arc=.35mm, bottomrule=.15mm, leftrule=.75mm]
 
 \textbf{What to note:} Our decision tree treated \texttt{zipCode} as a
 numerical variable. This leads to zip code being unimportant. Not
@@ -383,42 +291,6 @@ categorical variables to see the difference.
 \subsubsection{Categorical Encoding Analysis}
 
 \subsubsection{R}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Convert zipCode to factor (categorical)}
-\NormalTok{model\_data\_cat }\OtherTok{\textless{}{-}}\NormalTok{ model\_data }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{zipCode =} \FunctionTok{as.factor}\NormalTok{(zipCode))}
-
-\CommentTok{\# Split data}
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
-\NormalTok{train\_indices\_cat }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(model\_data\_cat), }\FloatTok{0.8} \SpecialCharTok{*} \FunctionTok{nrow}\NormalTok{(model\_data\_cat))}
-\NormalTok{train\_data\_cat }\OtherTok{\textless{}{-}}\NormalTok{ model\_data\_cat[train\_indices\_cat, ]}
-\NormalTok{test\_data\_cat }\OtherTok{\textless{}{-}}\NormalTok{ model\_data\_cat[}\SpecialCharTok{{-}}\NormalTok{train\_indices\_cat, ]}
-
-\CommentTok{\# Build decision tree with categorical zipCode}
-\NormalTok{tree\_model\_cat }\OtherTok{\textless{}{-}} \FunctionTok{rpart}\NormalTok{(SalePrice }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }
-                        \AttributeTok{data =}\NormalTok{ train\_data\_cat,}
-                        \AttributeTok{method =} \StringTok{"anova"}\NormalTok{,}
-                        \AttributeTok{control =} \FunctionTok{rpart.control}\NormalTok{(}\AttributeTok{maxdepth =} \DecValTok{3}\NormalTok{, }
-                                              \AttributeTok{minsplit =} \DecValTok{20}\NormalTok{, }
-                                              \AttributeTok{minbucket =} \DecValTok{10}\NormalTok{))}
-
-\CommentTok{\# Feature importance with categorical zipCode}
-\NormalTok{importance\_cat }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
-  \AttributeTok{Feature =} \FunctionTok{names}\NormalTok{(tree\_model\_cat}\SpecialCharTok{$}\NormalTok{variable.importance),}
-  \AttributeTok{Importance =} \FunctionTok{as.numeric}\NormalTok{(tree\_model\_cat}\SpecialCharTok{$}\NormalTok{variable.importance)}
-\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(Importance)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Importance\_Percent =} \FunctionTok{round}\NormalTok{(Importance }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(Importance) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{2}\NormalTok{))}
-
-\CommentTok{\# Check if zipCode appears in tree}
-\NormalTok{zipcode\_in\_tree }\OtherTok{\textless{}{-}} \StringTok{"zipCode"} \SpecialCharTok{\%in\%} \FunctionTok{names}\NormalTok{(tree\_model\_cat}\SpecialCharTok{$}\NormalTok{variable.importance)}
-\ControlFlowTok{if}\NormalTok{(zipcode\_in\_tree) \{}
-\NormalTok{  zipcode\_rank\_cat }\OtherTok{\textless{}{-}} \FunctionTok{which}\NormalTok{(importance\_cat}\SpecialCharTok{$}\NormalTok{Feature }\SpecialCharTok{==} \StringTok{"zipCode"}\NormalTok{)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
 
 \subsubsection{Feature Importance: Categorical zipCode}
 
